@@ -6,7 +6,7 @@
     <title>with_corona_guide</title>
     <link rel="stylesheet" href="{% static 'home/css/intro.css' %}" type="text/css">
     <script src="{% static 'home/js/jquery-3.6.0.min.js' %}"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=<client_id>&amp;submodules=panorama,geocoder,drawing,visualization"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=pzbd3jnaoi&amp;submodules=panorama,geocoder,drawing,visualization"></script>
 </head>
 <body>
 <div id="menu-bar">
@@ -16,50 +16,79 @@
     <div id="map" style="width:80%;height:600px;"></div>
     <code id="snippet" class="snippet"></code>
     </div>
-<script id="code">
-var HOME_PATH = window.HOME_PATH || '.';
-var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
-    map = new naver.maps.Map('map', {
-        center: cityhall,
+<script type="text/javascript">
+
+$(function() {
+
+	initMap();
+
+});
+
+
+function initMap() {
+
+	var areaArr = new Array();  // 안심식당 상호명, 위치를 담는 배열
+	areaArr.push(
+        {loc : '원할머니보쌈족발본점' , addr : '서울특별시 중구 난계로 201' , lat : '37.5696506' , lng : '127.0231752'},
+        {loc : 'BHC치킨충무로역점' , addr : '서울특별시 중구 퇴계로 210' , lat : '37.5612419' , lng : '126.9950687'},
+        {loc : '동대문엽기떡볶이 동대문직영점' , addr : '서울특별시 중구 장충단로 249-10' , lat : '37.5672901' , lng : '127.0077594'},
+        {loc : '현가츠' , addr : '서울특별시 중구 명동8나길 45' , lat : '37.5610751' , lng : '126.982401'},
+        {loc : '원할머니보쌈족발본점' , addr : '서울특별시 중구 남대문로7길 23' , lat : '37.5638946' , lng : '126.9806026'}
+    );
+
+
+
+	let markers = new Array(); // 마커 정보를 담는 배열
+	let infoWindows = new Array(); // 정보창을 담는 배열
+
+	var map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(37.5579452, 126.9941904), //지도 시작 지점(서울특별시 중구)
         zoom: 15
-    }),
-    marker = new naver.maps.Marker({
-        map: map,
-        position: cityhall
     });
 
-var contentString = [
-        '<div class="iw_inner">',
-        '   <h3>서울특별시청</h3>',
-        '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-        '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-        '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-        '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-        '   </p>',
-        '</div>'
-    ].join('');
 
-var infowindow = new naver.maps.InfoWindow({
-    content: contentString,
-    maxWidth: 400,
-    backgroundColor: "#eee",
-    borderColor: "#2db400",
-    borderWidth: 5,
-<!--    anchorSize: new naver.maps.Size(30, 30),-->
-<!--    anchorSkew: true,-->
-<!--    anchorColor: "#eee",-->
-    disableAnchor: true,
-    pixelOffset: new naver.maps.Point(20, -20)
-});
 
-naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map, marker);
+
+	for (var i = 0; i < areaArr.length; i++) {
+
+	    var marker = new naver.maps.Marker({
+	        map: map,
+	        title: areaArr[i].loc, // 안심식당 상호명
+	        position: new naver.maps.LatLng(areaArr[i].lat , areaArr[i].lng) // 안심식당 위치
+	    });
+
+	    /* 정보창 */
+		 var infoWindow = new naver.maps.InfoWindow({
+		     content: '<div style="width:200px;text-align:center;padding:10px;"><b>' + areaArr[i].loc + '</b><br>' + areaArr[i].addr + '</div>'
+		 }); // 클릭했을 때 띄워줄 정보 HTML 작성
+
+		 markers.push(marker); // 생성한 마커를 배열에 담는다.
+		 infoWindows.push(infoWindow); // 생성한 정보창을 배열에 담는다.
+	}
+
+
+    function getClickHandler(seq) {
+
+            return function(e) {  // 마커를 클릭하는 부분
+                var marker = markers[seq], // 클릭한 마커의 시퀀스로 찾는다.
+                    infoWindow = infoWindows[seq]; // 클릭한 마커의 시퀀스로 찾는다
+
+                if (infoWindow.getMap()) {
+                    infoWindow.close();
+                } else {
+                    infoWindow.open(map, marker); // 표출
+                }
+    		}
+    	}
+
+    for (var i=0, ii=markers.length; i<ii; i++) {
+    	console.log(markers[i] , getClickHandler(i));
+        naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
     }
-});
+}
+
 </script>
+
 <div id="side-bar">
     <p>side bar</p>
 </div>
