@@ -35,3 +35,40 @@
         left: 0px;
         top: 100px;
     }
+
+    .links{
+        position: absolute;
+        top: 50px;
+        right: 5%
+    }
+    .link_text {
+        font-size: 20px;
+        margin-left: 5px;
+        color: white;
+    }
+
+    .main{
+        margin-top: 150px;
+        margin-left: 50px;
+    }
+
+    .buttons{
+        float: left;
+        width: 20%;
+    }
+    button.btn{
+        width: 100px;
+        height: 160px;
+        border:none;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background-color: aliceblue;
+    }
+
+    .text{
+        width: 80%;
+        float: right;
+        text-align: left;
+        font-size: 16px;
+    }
