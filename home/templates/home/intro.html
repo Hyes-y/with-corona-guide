@@ -7,11 +7,66 @@
     <link rel="stylesheet" href="{% static 'home/css/intro.css' %}" type="text/css">
     <script src="{% static 'home/js/jquery-3.6.0.min.js' %}"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=pzbd3jnaoi&amp;submodules=panorama,geocoder,drawing,visualization"></script>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!--font-awsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css" integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug==" crossorigin="anonymous" />
+
 </head>
 <body>
+
+<!--<header>
+    <i class="fas fa-bars" id="OpenBtn"></i>
+</header>-->
+
 <div id="menu-bar">
-    <h1>WITH CORONA GUIDE</h1>
+    <h1>WITH CORONA GUIDE</h1>   
 </div>
+
+<div id="sidebar">
+    <div class="user_location">
+        <h3>현재 사용자의 위치는?</h3>
+        <i class="fas fa-map-marker-alt"></i>
+        <span>서울 특별시</span>
+    </div>
+    <br/>
+    <div class="distance_level">
+        <h3>현재 코로나 단계는?</h3>
+        <i class="fas fa-thumbtack"></i>
+        <span>단계적 일상회복 1단계</span>
+        <br/><br/>
+        <h3>현재 몇 명까지 모일 수 있나요?</h3>
+        <p>*미접종자 기준: 최대 4명</p>
+        <p>*접종자 완료자 기준: 최대 10명 </p>
+        <p class="group_">단, 미접종자의 경우에는 어떠한 경우에도 최대 4명까지만 참석 가능합니다.</p>
+    </div>
+
+</div>
+
+
+<!--<script>
+        $(document).ready(function(){
+            var target = $("#sidebar");
+
+            // 버튼을 클릭하면 사이드바 열림
+            $(document).on("click", "#OpenBtn", function (e){
+                target.show();
+                target.addClass('emphasized');
+            });
+
+            // 사이드바 외부를 클릭하면 사이드바 닫힘
+            $(document).mouseup(function (e){
+                if(target.has(e.target).length==0) {
+                    target.hide();
+                    target.removeClass('emphasized');
+                }
+            });
+        });
+    </script>
+-->
+
 <div id="wrap" class="section">
     <div id="map" style="width:80%;height:600px;"></div>
     <code id="snippet" class="snippet"></code>
@@ -89,8 +144,5 @@ function initMap() {
 
 </script>
 
-<div id="side-bar">
-    <p>side bar</p>
-</div>
 </body>
 </html>
