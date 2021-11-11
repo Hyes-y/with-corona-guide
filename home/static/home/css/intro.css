@@ -10,8 +10,28 @@
         padding: 0;
     }
 
-    #menu-bar{
+    #menu-bar {
         width: 100%;
-        height: 50px;
+        height: 100px;
+        padding-left: 20px;
         background-color: blue;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+
+    #map {
+        postion: absolute;
+        left: 20%;
+        top: 100px;
+    }
+
+    #side-bar {
+        width: 20%;
+        height: 600px;
+        padding-left: 20px;
+        background-color: #d3d3d3;
+        position: absolute;
+        left: 0px;
+        top: 100px;
     }
