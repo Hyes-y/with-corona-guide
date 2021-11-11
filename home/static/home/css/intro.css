@@ -36,15 +36,25 @@
         top: 100px;
     }
 
-    .links{
+    #link1 {
         position: absolute;
         top: 50px;
-        right: 5%
-    }
-    .link_text {
+        right: 5%;
         font-size: 20px;
         margin-left: 5px;
         color: white;
+        text-decoration: none;
+    }
+
+    #link2 {
+        position: absolute;
+        top: 50px;
+        right: 20%;
+        font-size: 20px;
+        margin-left: 5px;
+        color: white;
+        text-decoration: none;
+
     }
 
     .main{
