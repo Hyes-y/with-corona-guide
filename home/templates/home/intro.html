@@ -122,7 +122,16 @@ function initMap() {
         <p>*접종자 완료자 기준: 최대 10명 </p>
         <p class="group_">단, 미접종자의 경우에는 어떠한 경우에도 최대 4명까지만 참석 가능합니다.</p>
     </div>
-
+    <br/>
+    <div class="select_cate">
+      <h3>어떤 분야의 코로나 정보를 보고 싶으세요?</h3>
+      <select name='covid_info'>
+       <option value=''>-- 선택 --</option>
+       <option value='restaurant,' selected>안심 식당</option>
+       <option value='muti_facility' disabled>다중 이용 시설</option>
+       <option value='hospital' disabled>국민 안심 병원</option>
+      </select>
+    </div>
 </div>
 <!--<script>
         $(document).ready(function(){
